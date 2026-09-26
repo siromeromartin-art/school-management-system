@@ -1,0 +1,3 @@
+{% extends "school/base.html" %}{% block title %}Students{% endblock %}
+{% block content %}<h1>Students</h1><table><tr><th>Admission</th><th>Name</th><th>Gender</th><th>Parent 1</th><th>Parent 2</th><th></th></tr>
+{% for s in students %}<tr><td>{{s.admission_number}}</td><td>{{s.full_name}}</td><td>{{s.get_gender_display}}</td><td>{{s.parent_one}}</td><td>{{s.parent_two}}</td><td><a class="btn" href="{% url 'student_detail' s.id %}">View</a></td></tr>{% empty %}<tr><td colspan="6">No students.</td></tr>{% endfor %}</table>{% endblock %}

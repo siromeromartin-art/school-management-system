@@ -1,0 +1,3 @@
+{% extends "school/base.html" %}{% block title %}School Settings{% endblock %}
+{% block content %}<h1>School Settings</h1><form method="post">{% csrf_token %}<div class="grid2"><div><h2>School details</h2>{{school_form.as_p}}</div><div><h2>Attendance days</h2><p>Select exactly the days your school records attendance.</p>{{attendance_form.as_p}}</div></div><button type="submit">Save Settings</button></form>
+<p>Other permanent configuration is managed from <a href="/admin/">Administration</a>: schools, users, groups, academic years/periods, classes, subjects per class, teachers, parents, students, grading, fees, marks, attendance and report remarks.</p>{% endblock %}

@@ -1,0 +1,36 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}School Management System{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'school/style.css' %}">
+</head>
+<body>
+<header>
+<div><strong>{{ school.name|default:"School Management System" }}</strong></div>
+<div>
+{% if request.user.is_authenticated %}
+<span>{{ request.user.get_full_name|default:request.user.username }}</span>
+<form method="post" action="{% url 'logout' %}" style="display:inline;">
+{% csrf_token %}<button type="submit">Logout</button>
+</form>
+{% endif %}
+</div>
+</header>
+{% if request.user.is_authenticated %}
+<div class="nav">
+<a href="{% url 'dashboard' %}">Dashboard</a>
+<a href="{% url 'students' %}">Students</a>
+<a href="{% url 'marks' %}">Marks</a>
+<a href="{% url 'attendance' %}">Attendance</a>
+<a href="{% url 'fees' %}">Fees</a>
+{% if request.user.is_superuser %}<a href="{% url 'setup' %}">School Settings</a><a href="/admin/">Administration</a>{% endif %}
+</div>
+{% endif %}
+<div class="container">
+{% if messages %}{% for message in messages %}<p><strong>{{ message }}</strong></p>{% endfor %}{% endif %}
+{% block content %}{% endblock %}
+</div>
+</body>
+</html>

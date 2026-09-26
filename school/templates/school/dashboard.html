@@ -1,0 +1,12 @@
+{% extends "school/base.html" %}{% block title %}Dashboard{% endblock %}
+{% block content %}<h1>Dashboard</h1>
+<div class="cards">
+<div class="card"><div class="num">{{students}}</div>Students</div>
+<div class="card"><div class="num">{{classes}}</div>Classes</div>
+<div class="card"><div class="num">{{teachers}}</div>Teachers</div>
+<div class="card"><div class="num">{{parents}}</div>Parents</div>
+<div class="card"><div class="num">{{subjects}}</div>Subjects</div>
+<div class="card"><div class="num">{{years}}</div>Academic Years</div>
+</div>
+{% if children %}<h2>My Children</h2><table><tr><th>Name</th><th>Admission</th><th>Action</th></tr>{% for c in children %}<tr><td>{{c.full_name}}</td><td>{{c.admission_number}}</td><td><a class="btn" href="{% url 'student_detail' c.id %}">View</a></td></tr>{% endfor %}</table>{% endif %}
+{% endblock %}
